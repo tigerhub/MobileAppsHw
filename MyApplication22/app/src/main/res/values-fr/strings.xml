@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- **Still have to translate into french...  -->
+
+    <string name="app_name">Mon Application2</string>
+    <string name="desc">vie à la ferme</string>
+
+    <string name="farm">ferme</string>
+    <string name="cow">vache</string>
+    <string name="pig">porc</string>
+
+    <string name="farmD">vie à la ferme</string>
+    <string name="cowD">Meuh</string>
+    <string name="pigD">Groin</string>
+
+</resources>

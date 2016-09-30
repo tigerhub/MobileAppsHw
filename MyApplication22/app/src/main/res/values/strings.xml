@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Application2</string>
+    <string name="desc">_ _ _ _ _</string>
+
+    <string name="farm">farm</string>
+    <string name="cow">cow</string>
+    <string name="pig">pig</string>
+
+    <string name="farmD">Farm Life</string>
+    <string name="cowD">Moo</string>
+    <string name="pigD">Oink</string>
+
+</resources>
