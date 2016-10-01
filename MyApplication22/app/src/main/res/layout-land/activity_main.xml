@@ -340,7 +340,7 @@
             android:id="@+id/imageView1"
             android:layout_above="@+id/textView"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/farm"
+            android:src="@drawable/hangman0"
             android:adjustViewBounds="true"
             android:layout_weight="1.49"
             android:layout_gravity="top|center_horizontal" />

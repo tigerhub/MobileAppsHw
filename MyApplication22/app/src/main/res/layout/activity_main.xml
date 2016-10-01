@@ -13,7 +13,7 @@
         android:layout_above="@+id/textView"
         android:layout_alignParentEnd="true"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/farm"
+        android:src="@drawable/hangman0"
         android:adjustViewBounds="true" />
 
     <TextView
