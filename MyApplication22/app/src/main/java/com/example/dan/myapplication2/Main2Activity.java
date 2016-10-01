@@ -10,6 +10,7 @@ import android.widget.TextView;
 public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
 
     TextView results;
+    TextView word_was;
     Button again;
 
 
@@ -21,8 +22,11 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
 
         Intent intent = getIntent();
         String val = intent.getStringExtra("key");
+        String word_val = intent.getStringExtra("key2");
         results = (TextView) findViewById(R.id.result1);
+        word_was = (TextView) findViewById(R.id.word_is);
         results.setText(val);
+        word_was.setText("The word was:  " + word_val);
 
         again = (Button) findViewById(R.id.btnAgain);
 
@@ -36,7 +40,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         Intent myIntent = new Intent(Main2Activity.this, MainActivity.class);
-        //myIntent.putExtra("key", score); // could add score for instance
+        //myIntent.putExtra("key3", score); // could add score for instance
         Main2Activity.this.startActivity(myIntent);
     }
 

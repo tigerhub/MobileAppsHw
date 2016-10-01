@@ -33,5 +33,18 @@
         android:layout_gravity="bottom|center_horizontal"
         android:onClick="onClick" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"></LinearLayout>
+
+    <TextView
+        android:layout_width="293dp"
+        android:layout_height="59dp"
+        android:text="The word was: "
+        android:id="@+id/word_is"
+        android:textSize="20sp"
+        android:layout_gravity="top|center_horizontal" />
+
 
 </LinearLayout>

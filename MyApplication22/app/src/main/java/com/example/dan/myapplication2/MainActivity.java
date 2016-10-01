@@ -15,18 +15,13 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import java.util.Random;
 
-// ***************************************
-// *** NOTE:  STILL TO DO:::
-//
-// - clean up (get rid of certain classes/ variables/ etc. that are not used/ are leftover from previous project(s))
-//
-// ***************************************
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Declarations:
     String word;
     String hint2;
+    String wordOrignal;
     SpannableString content;
 
     int imgNum = 0;
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         word = strArr[randWordNum];   // can be set to any index of strArr
-        String wordOrignal = word;    // save this for later use;
+        wordOrignal = word;    // save this for later use;
 
         // transform the word into the "proper" text, similar to what see on screen (easier to manipulate)
         word = word.toUpperCase();
@@ -189,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // create "you win screen" in the form of new activity
                 Intent myIntent = new Intent(MainActivity.this, Main2Activity.class);
                 myIntent.putExtra("key", "You Win!");
+                myIntent.putExtra("key2", (""+word));
                 MainActivity.this.startActivity(myIntent);
             }
 
@@ -207,6 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // create "you lose screen" in the form of new activity
                 Intent myIntent = new Intent(MainActivity.this, Main2Activity.class);
                 myIntent.putExtra("key", "You Lose!");
+                myIntent.putExtra("key2", (""+word));
                 MainActivity.this.startActivity(myIntent);
             }
             else {
