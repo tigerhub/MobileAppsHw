@@ -4,6 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.content.Intent;
 
@@ -17,16 +21,23 @@ public class FirstActivity extends AppCompatActivity
     // Announce the Gesture Detector
     private GestureDetector myGestureDetector;
 
+    // register xml animation file
+    Animation anim_RotateThreeTimes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
-        imageView_Dog = (ImageView)findViewById(R.id.iv_SleepingDog);
-
         // Instantiate the Gesture Detector
         myGestureDetector = new GestureDetector(this, this);
+
+        // Bind Animation XML files to Animation Variables
+        anim_RotateThreeTimes = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_three_times);
+
+        imageView_Dog = (ImageView)findViewById(R.id.iv_SleepingDog);
     }
 
 
@@ -89,6 +100,7 @@ public class FirstActivity extends AppCompatActivity
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
+        imageView_Dog.startAnimation(anim_RotateThreeTimes);
         return false;
     }
 
