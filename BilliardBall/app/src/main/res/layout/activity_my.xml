@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/frameLayout"
+    tools:context=".MyActivity"
+    android:background="@drawable/table">
+
+    <SeekBar
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:max="2"
+        android:progress="0"
+        android:id="@+id/sb_Acceleration"
+        android:layout_gravity="bottom|center"/>
+    <!--  style="@style/Widget.AppCompat.SeekBar.Discrete" -->
+
+
+</FrameLayout>
