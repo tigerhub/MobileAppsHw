@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String[] strArr;
     String[] hintArr;
     int[] ImageList;
+    ArrayList buttons = new ArrayList();
 
     TextView descText;
     TextView hintText;
@@ -124,6 +127,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //keep state after each rotation for imgNum (since after each rotation, imgnum gets defaulted back to zero
             // when OnCreate() is called. So we need to set it back to its "previous" value)
             imgNum = imgNum2;
+
+            // get instance of all buttions in saved-state, then use loop to reset them to their "correct" states:
+            buttons = savedInstanceState.getParcelableArrayList("key3");
+            for (int i = 0; i < buttons.size(); i++){
+                // get button id, then set corresponding button to be disabled
+                Button b2 = (Button) findViewById((int) buttons.get(i));
+                b2.setEnabled(false);
+            }
+
+
         }
 
     }
@@ -137,11 +150,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         outState.putInt(IMAGE_RESOURCE, imgNum);
         outState.putInt(RAND_RESOURCE, randWordNum2);    // save the random number from random number generator
 
+        outState.putParcelableArrayList("key3", buttons);       //save states of butttons via their id's
+
     }
 
     // the default method for onClicks (every alphabet button uses this)
     public void onClick(View v) {
-        Button b = (Button)v;
+        int intID = v.getId();      // get id of button
+        buttons.add(intID);        // add button id to list
+
+        Button b = (Button) findViewById(intID);
         String buttonText = b.getText().toString();
 
         //disable the button immediately to prevent trolls
