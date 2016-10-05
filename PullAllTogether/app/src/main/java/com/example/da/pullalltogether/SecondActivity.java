@@ -24,7 +24,6 @@ public class SecondActivity extends AppCompatActivity
     // Announce the Gesture Detector
     private GestureDetector myGestureDetector;
 
-<<<<<<< HEAD
     // Accelerometer related variables
     private float lastX, lastY, lastZ;  //old coordinate positions from accelerometer, needed to calculate delta.
     private float acceleration;
