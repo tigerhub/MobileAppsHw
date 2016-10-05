@@ -24,6 +24,7 @@ public class SecondActivity extends AppCompatActivity
     // Announce the Gesture Detector
     private GestureDetector myGestureDetector;
 
+<<<<<<< HEAD
     // Accelerometer related variables
     private float lastX, lastY, lastZ;  //old coordinate positions from accelerometer, needed to calculate delta.
     private float acceleration;
@@ -40,6 +41,12 @@ public class SecondActivity extends AppCompatActivity
     Animation anim_MoveLeft;
     Animation anim_MoveUp;
     Animation anim_MoveDown;
+
+    Animation anim_Rotate5Times;
+    Animation anim_Rotate10Times;
+    Animation anim_Rotate10TimesCounter;
+    Animation anim_Rotate5TimesCounter;
+
 
 
     @Override
@@ -63,6 +70,7 @@ public class SecondActivity extends AppCompatActivity
 
         // Instantiate the Gesture Detector
         myGestureDetector = new GestureDetector(this, this);
+
 
         // Initialize acceleration values
         acceleration = 0.00f;                                  // Initializing Acceleration data
@@ -170,6 +178,19 @@ public class SecondActivity extends AppCompatActivity
         // stop listening for accelerometer events
         sensorManager.unregisterListener(mySensorEventListener,
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
+
+        anim_Rotate5Times = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_5_clock);
+
+        anim_Rotate5TimesCounter = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_5_counter);
+
+        anim_Rotate10Times = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_10);
+
+        anim_Rotate10TimesCounter = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_10_counter);
+
     }
 
 
@@ -211,14 +232,29 @@ public class SecondActivity extends AppCompatActivity
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         final float minFlingDistance = 30;
-
+        final float velocity_threshold = 19;        // can be set to anything!
+        //counter-clockwise for left flings
         if (e1.getX() - e2.getX() > minFlingDistance) {
-            Intent intent_GoToSecondActivity =
-                    new Intent(getApplicationContext(), FirstActivity.class);
-            startActivity(intent_GoToSecondActivity);
+            if (velocityX < velocity_threshold) {
+                imageView_Cat.startAnimation(anim_Rotate5TimesCounter);
+            }
+            else{
+                imageView_Cat.startAnimation(anim_Rotate10TimesCounter);
+            }
 
             return true;
         }
+        //clockwise for right flings
+        else if (e2.getX() - e1.getX() > minFlingDistance){
+            if ((-1*velocityX) < velocity_threshold) {
+                imageView_Cat.startAnimation(anim_Rotate5Times);
+            }
+            else{
+                imageView_Cat.startAnimation(anim_Rotate10Times);
+            }
+            return true;
+        }
+
         return false;
     }
 
