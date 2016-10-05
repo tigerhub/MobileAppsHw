@@ -30,7 +30,7 @@ public class SecondActivity extends AppCompatActivity
     private float currentAcceleration;
     private float lastAcceleration;
     // value used to determine whether user shook the device "significantly"
-    private static int SIGNIFICANT_SHAKE = 500;   //tweak this as necessary
+    private static int SIGNIFICANT_SHAKE = 900;   //tweak this as necessary
     private static int X_MOVEMENT_THRESHOLD = 10;  //tweak this as necessary
     private static int Y_MOVEMENT_THRESHOLD = 10;  //tweak this as necessary
 
@@ -66,6 +66,14 @@ public class SecondActivity extends AppCompatActivity
                 getApplicationContext(), R.anim.move_up);
         anim_MoveDown = AnimationUtils.loadAnimation(
                 getApplicationContext(), R.anim.move_down);
+        anim_Rotate5Times = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_5_clock);
+        anim_Rotate5TimesCounter = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_5_counter);
+        anim_Rotate10Times = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_10);
+        anim_Rotate10TimesCounter = AnimationUtils.loadAnimation(
+                getApplicationContext(), R.anim.rotate_10_counter);
 
         // Instantiate the Gesture Detector
         myGestureDetector = new GestureDetector(this, this);
@@ -177,19 +185,6 @@ public class SecondActivity extends AppCompatActivity
         // stop listening for accelerometer events
         sensorManager.unregisterListener(mySensorEventListener,
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
-
-        anim_Rotate5Times = AnimationUtils.loadAnimation(
-                getApplicationContext(), R.anim.rotate_5_clock);
-
-        anim_Rotate5TimesCounter = AnimationUtils.loadAnimation(
-                getApplicationContext(), R.anim.rotate_5_counter);
-
-        anim_Rotate10Times = AnimationUtils.loadAnimation(
-                getApplicationContext(), R.anim.rotate_10);
-
-        anim_Rotate10TimesCounter = AnimationUtils.loadAnimation(
-                getApplicationContext(), R.anim.rotate_10_counter);
-
     }
 
 
@@ -232,6 +227,7 @@ public class SecondActivity extends AppCompatActivity
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         final float minFlingDistance = 30;
         final float velocity_threshold = 19;        // can be set to anything!
+
         //counter-clockwise for left flings
         if (e1.getX() - e2.getX() > minFlingDistance) {
             if (velocityX < velocity_threshold) {
@@ -240,9 +236,9 @@ public class SecondActivity extends AppCompatActivity
             else{
                 imageView_Cat.startAnimation(anim_Rotate10TimesCounter);
             }
-
             return true;
         }
+
         //clockwise for right flings
         else if (e2.getX() - e1.getX() > minFlingDistance){
             if ((-1*velocityX) < velocity_threshold) {
